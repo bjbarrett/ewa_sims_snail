@@ -1,5 +1,5 @@
-###let do an individual learning sim from first pricipals using EWA model.
-##we can start with a continous simulation, and add agents and heterogeneity l8r
+###let's do an individual learning sim from first principals using EWA model.
+##we can start with a continuous simulation, and add agents and heterogeneity later
 
 ######Functions
 
@@ -8,16 +8,17 @@ Softmax <- function(x){
   exp(x)/sum(exp(x))
 }
 
-#color pallate
+#color palate
 col.pal <- c("#1B9E77", "#D95F02")
+# green (low payoff) and red (high payoff)
 
 #simulate data set conditions
 dsim <- data.frame( timestep=0 , tech=0 , payoff_i1=0 , payoff_i2=0, A1=0 , A2=0 , Pr1=0 , Pr2=0)
-timesteps <- 100
-phi <- 0.1
-lambda <- 0.2
-techmeans <- c(8,12)
-techvar <- c(1,1)
+timesteps <- 100 # number of timesteps (t), in snail example, every interaction with a snail is a new timestep
+phi <- 0.1 # low is more reliance on past memory and high is reliance on recent experience (0-1)
+lambda <- 0.2 # sensitivity to differences in attraction, low is insensitive (0 is no attention to differences in attraction score, equal chance to pick each behavior), higher is more sensitive (0-infinity)
+techmeans <- c(8,12) # pay offs of behaviors 1 and 2 
+techvar <- c(1,1) # variance in pay offs of behavior across time steps
 #visualize how hard to learn
 plot(density(rnorm( 10000, mean=techmeans[1] , sd=techvar[1] ) ) ,col=col.pal[1] , xlim=c(0,20)) 
 lines(density(rnorm( 10000, mean=techmeans[2] , sd=techvar[2] ) ) ,col=col.pal[2]) 
@@ -95,7 +96,7 @@ sim_reinf_learn <- function(phi,lambda){
   
 }
 
-##run some functions to exploire average dynamics across simulation space
+##run some functions to explore average dynamics across simulation space
 sim_reinf_learn(phi=0.5,lambda=0.1)
 sim_reinf_learn(phi=0.9,lambda=0.1)
 sim_reinf_learn(phi=0.01,lambda=0.3)
@@ -103,3 +104,4 @@ sim_reinf_learn(phi=0.1,lambda=0.3)
 sim_reinf_learn(phi=0.5,lambda=0.3)
 sim_reinf_learn(phi=0.1,lambda=1)
 sim_reinf_learn(phi=0.9,lambda=1)
+
