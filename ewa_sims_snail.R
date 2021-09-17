@@ -1,8 +1,7 @@
-###let do an individual learning sim from first pricipals using EWA model.
-##we can start with a continous simulation, and add agents and heterogeneity l8r
+###let do an individual learning sim from first principals using EWA model.
+##we can start with a continuous simulation, and add agents and heterogeneity l8r
 
 ######Functions
-
 ######create a softmax function to simply code
 Softmax <- function(x){
   exp(x)/sum(exp(x))
